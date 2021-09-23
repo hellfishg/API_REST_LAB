@@ -1,5 +1,6 @@
 package aero.api_rest.controllers;
 
+import aero.api_rest.models.ProductModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,4 +20,11 @@ public class ProductController {
         list.add("Hola como va!");
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
+    @GetMapping("create")
+    public void create(){
+        ProductModel product = new ProductModel();
+        product.setName("Zapatillas");
+    }
+
 }
