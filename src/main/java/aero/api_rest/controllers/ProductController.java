@@ -34,7 +34,7 @@ public class ProductController {
         productRepository.save(product);
     }*/
 
-    @PostMapping("/create")
+    @GetMapping("/create")
     public ResponseEntity<?> create() {
         ProductModel product = new ProductModel();
         product.setName("Zapatillas");
