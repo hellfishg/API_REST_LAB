@@ -1,6 +1,8 @@
 package aero.api_rest.controllers;
 
 import aero.api_rest.models.ProductModel;
+import aero.api_rest.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,9 @@ import java.util.List;
 @RequestMapping("products")
 public class ProductController {
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @GetMapping("/list")
     public ResponseEntity<List<String>> list(){
         List<String> list = new ArrayList<>();
@@ -21,10 +26,11 @@ public class ProductController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("create")
+    @GetMapping("/create")
     public void create(){
         ProductModel product = new ProductModel();
         product.setName("Zapatillas");
+        productRepository.save(product);
     }
 
 }
