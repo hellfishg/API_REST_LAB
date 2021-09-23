@@ -14,7 +14,7 @@ public class ProductModel {
     private String name;
 
     public ProductModel() {
-        
+
     }
 
     public String getName() {
