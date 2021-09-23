@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,11 +27,19 @@ public class ProductController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/create")
+/*    @GetMapping("/create")
     public void create(){
         ProductModel product = new ProductModel();
         product.setName("Zapatillas");
         productRepository.save(product);
+    }*/
+
+    @PostMapping("/create")
+    public ResponseEntity<?> create() {
+        ProductModel product = new ProductModel();
+        product.setName("Zapatillas");
+        productRepository.save(product);
+        return new ResponseEntity<>("Entidad Creada!!", HttpStatus.CREATED);
     }
 
 }

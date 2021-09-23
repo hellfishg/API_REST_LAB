@@ -13,6 +13,10 @@ public class ProductModel {
     @Column
     private String name;
 
+    public ProductModel() {
+        
+    }
+
     public String getName() {
         return name;
     }
