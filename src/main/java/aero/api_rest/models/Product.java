@@ -3,8 +3,7 @@ package aero.api_rest.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "products")
-public class ProductModel {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +12,7 @@ public class ProductModel {
     @Column
     private String name;
 
-    public ProductModel() {
-
+    public Product() {
     }
 
     public String getName() {

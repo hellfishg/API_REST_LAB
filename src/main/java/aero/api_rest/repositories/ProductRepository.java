@@ -1,13 +1,13 @@
 package aero.api_rest.repositories;
 
-import aero.api_rest.models.ProductModel;
-import org.springframework.data.repository.CrudRepository;
+import aero.api_rest.models.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends CrudRepository<ProductModel, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    ProductModel findById(long id);
+    Product findById(long id);
 
-    ProductModel findByName(String name);
+    Product findByName(String name);
 }
