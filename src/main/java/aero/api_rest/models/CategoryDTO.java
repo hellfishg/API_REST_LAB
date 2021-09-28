@@ -19,7 +19,7 @@ public class CategoryDTO implements Serializable {
         private Long parent_id;
 
         @JsonIgnoreProperties
-        private List<CategoryDTO> subcategories = new ArrayList<>();
+        private final List<CategoryDTO> subcategories = new ArrayList<>();
 
         //Getters and Setters:
         public Long getId() {

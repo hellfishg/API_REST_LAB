@@ -16,9 +16,9 @@ import static aero.api_rest.utils.Constants.*;
 @Service
 public class DollarPriceService {
 
-    public float getDollarRateARS() {
+    public Float getDollarRateARS() {
         Optional<DollarRateDTO> dollarRateDTO = getDollarRateDTO();
-        if (!dollarRateDTO.isPresent() || dollarRateDTO.get().getRate() < 1) return 1;
+        if (!dollarRateDTO.isPresent() || dollarRateDTO.get().getRate() < 1) return 1F;
         return dollarRateDTO.get().getRate();
     }
 

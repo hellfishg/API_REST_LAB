@@ -1,6 +1,7 @@
 package aero.api_rest.models;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -14,7 +15,7 @@ public class Product {
     private String name;
 
     @Column
-    private double price;
+    private BigDecimal price;
 
     @Column
     private String presentation;
@@ -49,11 +50,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

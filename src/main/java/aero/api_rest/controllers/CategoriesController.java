@@ -36,15 +36,17 @@ public class CategoriesController {
                         searchAndCreateSubcategories(e, categoryDTOList);
                     }
         });
-
         return new ResponseEntity<>(categoryDTOList, HttpStatus.OK);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
-    public Category create(@RequestBody Category category) {
-        //TODO: Validar que no cree categorias huerfanas.
-        return categoryRepository.save(category);
+    public ResponseEntity<Category> create(@RequestBody Category category) {
+        if (category.getParent_id() == null ||
+                categoryRepository.findById(category.getParent_id()).isPresent()) {
+            categoryRepository.save(category);
+            return new ResponseEntity<Category>(category, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<Category>(category, HttpStatus.NOT_ACCEPTABLE);
     }
 
     public Boolean searchAndCreateSubcategories(Category category, List<CategoryDTO> categoryDTOList) {

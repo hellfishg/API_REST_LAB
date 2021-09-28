@@ -3,6 +3,7 @@ package aero.api_rest.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,7 +16,7 @@ public class ProductDTO implements Serializable {
     private String name;
 
     @JsonIgnoreProperties
-    private double price;
+    private BigDecimal price;
 
     @JsonIgnoreProperties
     private String presentation;
@@ -33,9 +34,9 @@ public class ProductDTO implements Serializable {
     private LocalDate updatedAt;
 
     @JsonIgnoreProperties
-    private double dollarPrice;
+    private BigDecimal dollarPrice;
 
-    public ProductDTO createProductDTO (Product product, double dollarPrice) {
+    public ProductDTO createProductDTO (Product product, BigDecimal dollarPrice) {
         this.setId(product.getId());
         this.setName(product.getName());
         this.setPrice(product.getPrice());
@@ -65,11 +66,11 @@ public class ProductDTO implements Serializable {
         this.name = name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -113,20 +114,11 @@ public class ProductDTO implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public double getDollarPrice() {
+    public BigDecimal getDollarPrice() {
         return dollarPrice;
     }
 
-    public void setDollarPrice(double dollarPrice) {
+    public void setDollarPrice(BigDecimal dollarPrice) {
         this.dollarPrice = dollarPrice;
     }
-
-
-             /*   "price": 55,
-                        "presentation": "170 gr",
-                        "brand": "Chocolinas",
-                        "photo": "https://challenge-api.aerolab.co/static/products/7790040929906.jpg",
-                        "originalPrice": 111.09,
-                        "updatedAt": "2021-09-18T10:36:57+00:00"*/
-
 }

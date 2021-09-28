@@ -7,6 +7,7 @@ import aero.api_rest.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Controller
@@ -19,12 +20,13 @@ public class PreLoadDataBase {
     CategoryRepository categoryRepository;
 
     public void loadDataBase() {
-        productRepository.deleteAll();
         System.out.println("DELETE DATABASE..");
+        productRepository.deleteAll();
 
+        System.out.println("CREATE DATA..");
         Product chocolinas = new Product();
         chocolinas.setName("Galletitas Chocolate Chocolinas");
-        chocolinas.setPrice(55);
+        chocolinas.setPrice(new BigDecimal(55));
         chocolinas.setPresentation("170 gr");
         chocolinas.setBrand("Chocolinas");
         chocolinas.setPhoto("https=//challenge-api.aerolab.co/static/products/7790040929906.jpg");
@@ -34,7 +36,7 @@ public class PreLoadDataBase {
 
         Product nescafe = new Product();
         nescafe.setName("Cafe Instantaneo Suave NesCafe Dolca");
-        nescafe.setPrice(269.9);
+        nescafe.setPrice(BigDecimal.valueOf(269.9));
         nescafe.setPresentation("175 gr");
         nescafe.setBrand("Nescafé");
         nescafe.setPhoto("https=//challenge-api.aerolab.co/static/products/7613035067837.jpg");
@@ -44,7 +46,7 @@ public class PreLoadDataBase {
 
         Product merengadas = new Product();
         merengadas.setName("Galletitas de Vainilla Sabor Frutilla Merengadas");
-        merengadas.setPrice(44);
+        merengadas.setPrice(BigDecimal.valueOf(44));
         merengadas.setPresentation("93 gr");
         merengadas.setBrand("Merengadas");
         merengadas.setPhoto("https=//challenge-api.aerolab.co/static/products/7790040932708.jpg");
@@ -54,7 +56,7 @@ public class PreLoadDataBase {
 
         Product wilde = new Product();
         wilde.setName("Caldo de Verduras Wilde");
-        wilde.setPrice(45.9);
+        wilde.setPrice(BigDecimal.valueOf(45.9));
         wilde.setPresentation("12 un");
         wilde.setBrand("Wilde");
         wilde.setPhoto("https=//challenge-api.aerolab.co/static/products/7794000597723.jpg");
@@ -64,7 +66,7 @@ public class PreLoadDataBase {
 
         Product hellmanns = new Product();
         hellmanns.setName("Mayonesa Light Doypack Hellmanns");
-        hellmanns.setPrice(55.9);
+        hellmanns.setPrice(BigDecimal.valueOf(55.9));
         hellmanns.setPresentation("237 gr");
         hellmanns.setBrand("Hellmann's");
         hellmanns.setPhoto("https=//challenge-api.aerolab.co/static/products/7794000960145.jpg");
@@ -74,12 +76,12 @@ public class PreLoadDataBase {
 
         Product mellizas = new Product();
         mellizas.setName("Galletitas Sabor Vainilla con Relleno de Limon Mellizas");
-        mellizas.setPrice(44);
+        mellizas.setPrice(BigDecimal.valueOf(44));
         mellizas.setPresentation("112 gr");
         mellizas.setBrand("Mellizas");
         mellizas.setPhoto("https=//challenge-api.aerolab.co/static/products/7790040930209.jpg");
         mellizas.setOriginalPrice(51.78);
-        mellizas.setUpdatedAt(LocalDate.of(2021, 7,06));
+        mellizas.setUpdatedAt(LocalDate.of(2021, 7, 6));
         productRepository.save(mellizas);
 
         //Categories:
@@ -110,13 +112,13 @@ public class PreLoadDataBase {
 
         Category frutasVerduras = new Category();
         frutasVerduras.setId((long) 5);
-        frutasVerduras.setName("Furtas y Verduras");
+        frutasVerduras.setName("Frutas y Verduras");
         frutasVerduras.setParent_id(null);
         categoryRepository.save(frutasVerduras);
 
         Category panaderia = new Category();
         panaderia.setId((long) 6);
-        panaderia.setName("Panaderia");
+        panaderia.setName("Panadería");
         panaderia.setParent_id(null);
         categoryRepository.save(panaderia);
 
@@ -161,5 +163,7 @@ public class PreLoadDataBase {
         crema.setName("Crema Entera");
         crema.setParent_id((long) 2);
         categoryRepository.save(crema);
+
+        System.out.println("DATA BASE READY!");
     }
 }

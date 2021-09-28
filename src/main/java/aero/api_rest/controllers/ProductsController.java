@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -29,10 +31,10 @@ public class ProductsController {
     @GetMapping()
     public ResponseEntity<List<ProductDTO>> list() {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        float rateDollar = dollarPriceService.getDollarRateARS();
+        BigDecimal rateDollar = BigDecimal.valueOf(dollarPriceService.getDollarRateARS());
         productRepository.findAll()
                         .forEach(e -> productDTOList.add(new ProductDTO()
-                        .createProductDTO(e, e.getPrice() / rateDollar))
+                        .createProductDTO(e, e.getPrice().divide(rateDollar, RoundingMode.HALF_UP)))
                 );
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
     }
