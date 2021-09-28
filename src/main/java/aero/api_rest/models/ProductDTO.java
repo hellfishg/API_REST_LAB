@@ -1,45 +1,61 @@
 package aero.api_rest.models;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
-public class Product {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ProductDTO implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnoreProperties
     private Long id;
 
-    @Column
+    @JsonIgnoreProperties
     private String name;
 
-    @Column
+    @JsonIgnoreProperties
     private BigDecimal price;
 
-    @Column
+    @JsonIgnoreProperties
     private String presentation;
 
-    @Column
+    @JsonIgnoreProperties
     private String brand;
 
-    @Column
+    @JsonIgnoreProperties
     private String photo;
 
-    @Column
+    @JsonIgnoreProperties
     private double originalPrice;
 
-    @Column
+    @JsonIgnoreProperties
     private LocalDate updatedAt;
 
-    public Product() {
+    @JsonIgnoreProperties
+    private BigDecimal dollarPrice;
+
+    public ProductDTO createProductDTO (Product product, BigDecimal dollarPrice) {
+        this.setId(product.getId());
+        this.setName(product.getName());
+        this.setPrice(product.getPrice());
+        this.setPresentation(product.getPresentation());
+        this.setBrand(product.getBrand());
+        this.setPhoto(product.getPhoto());
+        this.setOriginalPrice(product.getOriginalPrice());
+        this.setUpdatedAt(product.getUpdatedAt());
+        this.setDollarPrice(dollarPrice);
+        return this;
     }
 
-    //Getter And Setters:
-
-
+    //Getters And Setters:
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -96,5 +112,13 @@ public class Product {
 
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public BigDecimal getDollarPrice() {
+        return dollarPrice;
+    }
+
+    public void setDollarPrice(BigDecimal dollarPrice) {
+        this.dollarPrice = dollarPrice;
     }
 }
