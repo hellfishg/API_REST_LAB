@@ -10,6 +10,10 @@ import org.springframework.stereotype.Controller;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Clase encargada de borrar y agregar datos para la practica.
+ * (Tendría que correr sobre el ambiente test realmente sobre una DB en memoria)
+ */
 @Controller
 public class PreLoadDataBase {
 

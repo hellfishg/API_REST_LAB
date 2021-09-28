@@ -21,6 +21,20 @@ public class CategoryDTO implements Serializable {
         @JsonIgnoreProperties
         private final List<CategoryDTO> subcategories = new ArrayList<>();
 
+        public void createSubCategory (Category category) {
+                this.setId(category.getId());
+                this.setName(category.getName());
+                this.setParent_id(category.getParent_id());
+        }
+
+        public void addNewSubCategory(Category category) {
+                CategoryDTO categoryDTO = new CategoryDTO();
+                categoryDTO.setId(category.getId());
+                categoryDTO.setName(category.getName());
+                categoryDTO.setParent_id(category.getParent_id());
+                this.getSubcategories().add(categoryDTO);
+        }
+
         //Getters and Setters:
         public Long getId() {
                 return id;
@@ -48,19 +62,5 @@ public class CategoryDTO implements Serializable {
 
         public List<CategoryDTO> getSubcategories() {
                 return subcategories;
-        }
-
-        public void createSubCategory (Category category) {
-                this.setId(category.getId());
-                this.setName(category.getName());
-                this.setParent_id(category.getParent_id());
-        }
-
-        public void addNewSubCategory(Category category) {
-                CategoryDTO categoryDTO = new CategoryDTO();
-                categoryDTO.setId(category.getId());
-                categoryDTO.setName(category.getName());
-                categoryDTO.setParent_id(category.getParent_id());
-                this.getSubcategories().add(categoryDTO);
         }
 }

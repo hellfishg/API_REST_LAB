@@ -39,7 +39,7 @@ public class ProductsController {
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
     }
 
-    @GetMapping("/new-products")
+    @GetMapping("/new_products")
     public ResponseEntity<List<Product>> listOfNewProducts() {
         LocalDate localDateNow = LocalDate.now(ZoneId.of("UTC-3"));
         LocalDate monthAgo = LocalDate.now(ZoneId.of("UTC-3")).minusMonths(TIME_SETTING_FOR_NEW_PRODUCTS);
@@ -53,5 +53,4 @@ public class ProductsController {
         product.setUpdatedAt(LocalDate.now(ZoneId.of("UTC-3")));
         return productRepository.save(product);
     }
-
 }

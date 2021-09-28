@@ -13,6 +13,10 @@ import java.util.Optional;
 
 import static aero.api_rest.utils.Constants.*;
 
+
+/**
+ * Servicio externo que trae el rate del dolar comparado con el peso Argentino.
+ */
 @Service
 public class DollarPriceService {
 
