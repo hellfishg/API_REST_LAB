@@ -1,6 +1,8 @@
 package aero.api_rest.utils;
 
+import aero.api_rest.models.Category;
 import aero.api_rest.models.Product;
+import aero.api_rest.repositories.CategoryRepository;
 import aero.api_rest.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,9 @@ public class PreLoadDataBase {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     public void loadDataBase() {
         productRepository.deleteAll();
@@ -57,7 +62,7 @@ public class PreLoadDataBase {
         wilde.setUpdatedAt(LocalDate.of(2021, 9,10));
         productRepository.save(wilde);
 
-        Product hellmanns= new Product();
+        Product hellmanns = new Product();
         hellmanns.setName("Mayonesa Light Doypack Hellmanns");
         hellmanns.setPrice(55.9);
         hellmanns.setPresentation("237 gr");
@@ -67,162 +72,94 @@ public class PreLoadDataBase {
         hellmanns.setUpdatedAt(LocalDate.of(2021, 8,10));
         productRepository.save(hellmanns);
 
-        /*
+        Product mellizas = new Product();
+        mellizas.setName("Galletitas Sabor Vainilla con Relleno de Limon Mellizas");
+        mellizas.setPrice(44);
+        mellizas.setPresentation("112 gr");
+        mellizas.setBrand("Mellizas");
+        mellizas.setPhoto("https=//challenge-api.aerolab.co/static/products/7790040930209.jpg");
+        mellizas.setOriginalPrice(51.78);
+        mellizas.setUpdatedAt(LocalDate.of(2021, 7,06));
+        productRepository.save(mellizas);
 
-    {
-      "id"= "7790040930209",
-      "name"= "Galletitas Sabor Vainilla con Relleno de Limon Mellizas",
-      "price"= 44,
-      "presentation"= "112 gr",
-      "brand"= "Mellizas",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790040930209.jpg",
-      "originalPrice"= 51.78,
-      "updatedAt"= "2021-09-06T10=36=57+00=00"
-    },
-    {
-      "id"= "7613034235404",
-      "name"= "Cafe Instantaneo Torrado Dolca NesCafe",
-      "price"= 208.9,
-      "presentation"= "170 gr",
-      "brand"= "Nescafé",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7613034235404.jpg",
-      "originalPrice"= 208.9,
-      "updatedAt"= "2021-08-25T10=36=57+00=00"
-    },
-    {
-      "id"= "7791004000099",
-      "name"= "Sal Gruesa en Paquete Celusal",
-      "price"= 44.5,
-      "presentation"= "1 kg",
-      "brand"= "Celusal",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7791004000099.jpg",
-      "originalPrice"= 44.5,
-      "updatedAt"= "2021-09-09T10=36=57+00=00"
-    },
-    {
-      "id"= "7790360720115",
-      "name"= "Picadillo de Carne en Lata Swift",
-      "price"= 31.38,
-      "presentation"= "90 gr",
-      "brand"= "Swift",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790360720115.jpg",
-      "originalPrice"= 52.01,
-      "updatedAt"= "2021-08-29T10=36=57+00=00"
-    },
-    {
-      "id"= "7790580511609",
-      "name"= "Mermelada de Naranja Light Frasco Arcor",
-      "price"= 87.5,
-      "presentation"= "390 gr",
-      "brand"= "Arcor",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790580511609.jpg",
-      "originalPrice"= 87.5,
-      "updatedAt"= "2021-09-03T10=36=57+00=00"
-    },
-    {
-      "id"= "7622300829643",
-      "name"= "Galletitas Vainilla Lincoln Angry Birds",
-      "price"= 60,
-      "presentation"= "153 gr",
-      "brand"= "Lincoln",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7622300829643.jpg",
-      "originalPrice"= 115.76,
-      "updatedAt"= "2021-09-12T10=36=57+00=00"
-    },
-    {
-      "id"= "7793360800900",
-      "name"= "Mermelada de Frutilla La Campagnola",
-      "price"= 119,
-      "presentation"= "454 gr",
-      "brand"= "La campagnola",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7793360800900.jpg",
-      "originalPrice"= 119,
-      "updatedAt"= "2021-09-08T10=36=57+00=00"
-    },
-    {
-      "id"= "7790040930407",
-      "name"= "Galletitas Rellena Amor",
-      "price"= 44,
-      "presentation"= "112 gr",
-      "brand"= "Bagley",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790040930407.jpg",
-      "originalPrice"= 63.81,
-      "updatedAt"= "2021-09-20T10=36=57+00=00"
-    },
-    {
-      "id"= "7790070318329",
-      "name"= "Fideos Tirabuzones Lucchetti",
-      "price"= 51.9,
-      "presentation"= "500 gr",
-      "brand"= "Lucchetti",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790070318329.jpg",
-      "originalPrice"= 51.9,
-      "updatedAt"= "2021-09-19T10=36=57+00=00"
-    },
-    {
-      "id"= "7790070318282",
-      "name"= "Fideos Spaghetti Lucchetti",
-      "price"= 52,
-      "presentation"= "500 gr",
-      "brand"= "Lucchetti",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790070318282.jpg",
-      "originalPrice"= 52,
-      "updatedAt"= "2021-08-19T10=36=57+00=00"
-    },
-    {
-      "id"= "7790360720382",
-      "name"= "Pate de Foie Swift Lata",
-      "price"= 43.49,
-      "presentation"= "90 gr",
-      "brand"= "Swift",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790360720382.jpg",
-      "originalPrice"= 43.49,
-      "updatedAt"= "2021-09-01T10=36=57+00=00"
-    },
-    {
-      "id"= "7790710000126",
-      "name"= "Yerba Mate con Hierbas Serranas Cbse",
-      "price"= 156.8,
-      "presentation"= "1 kg",
-      "brand"= "Cbse",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790710000126.jpg",
-      "originalPrice"= 156.8,
-      "updatedAt"= "2021-09-10T10=36=57+00=00"
-    },
-    {
-      "id"= "7790580956400",
-      "name"= "Salsa Portuguesa Doypack Arcor",
-      "price"= 37,
-      "presentation"= "340 gr",
-      "brand"= "Arcor",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790580956400.jpg",
-      "originalPrice"= 37,
-      "updatedAt"= "2021-09-19T10=36=57+00=00"
-    },
-    {
-      "id"= "7790070318114",
-      "name"= "Fideos Tallarin Don Vicente",
-      "price"= 79.05,
-      "presentation"= "500 gr",
-      "brand"= "Don vicente",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790070318114.jpg",
-      "originalPrice"= 79.05,
-      "updatedAt"= "2021-09-08T10=36=57+00=00"
-    },
-    {
-      "id"= "7790270336307",
-      "name"= "Galletitas Clasicas Mediatarde Pack 3 Un",
-      "price"= 52,
-      "presentation"= "330 gr",
-      "brand"= "Media tarde",
-      "photo"= "https=//challenge-api.aerolab.co/static/products/7790270336307.jpg",
-      "originalPrice"= 52,
-      "updatedAt"= "2021-09-15T10=36=57+00=00"
+        //Categories:
+
+        Category refrigerados = new Category();
+        refrigerados.setId((long) 1);
+        refrigerados.setName("Refrigerados");
+        refrigerados.setParent_id(null);
+        categoryRepository.save(refrigerados);
+
+        Category lacteos = new Category();
+        lacteos.setId((long) 2);
+        lacteos.setName("Lácteos");
+        lacteos.setParent_id((long) 1);
+        categoryRepository.save(lacteos);
+
+        Category bebidas = new Category();
+        bebidas.setId((long) 3);
+        bebidas.setName("Bebidas");
+        bebidas.setParent_id(null);
+        categoryRepository.save(bebidas);
+
+        Category quesosFiambres = new Category();
+        quesosFiambres.setId((long) 4);
+        quesosFiambres.setName("Quesos y Fiambres");
+        quesosFiambres.setParent_id((long) 1);
+        categoryRepository.save(quesosFiambres);
+
+        Category frutasVerduras = new Category();
+        frutasVerduras.setId((long) 5);
+        frutasVerduras.setName("Furtas y Verduras");
+        frutasVerduras.setParent_id(null);
+        categoryRepository.save(frutasVerduras);
+
+        Category panaderia = new Category();
+        panaderia.setId((long) 6);
+        panaderia.setName("Panaderia");
+        panaderia.setParent_id(null);
+        categoryRepository.save(panaderia);
+
+        Category carnesPescado = new Category();
+        carnesPescado.setId((long) 7);
+        carnesPescado.setName("Carnes y Pescado");
+        carnesPescado.setParent_id(null);
+        categoryRepository.save(carnesPescado);
+
+        Category carnes = new Category();
+        carnes.setId((long) 8);
+        carnes.setName("Carnes");
+        carnes.setParent_id((long) 7);
+        categoryRepository.save(carnes);
+
+        Category carneMamiferos = new Category();
+        carneMamiferos.setId((long) 9);
+        carneMamiferos.setName("Carne de Mamíferos");
+        carneMamiferos.setParent_id((long) 8);
+        categoryRepository.save(carneMamiferos);
+
+        Category carneFelinos = new Category();
+        carneFelinos.setId((long) 10);
+        carneFelinos.setName("Carne de Felinos");
+        carneFelinos.setParent_id((long) 9);
+        categoryRepository.save(carneFelinos);
+
+        Category gatitos = new Category();
+        gatitos.setId((long) 11);
+        gatitos.setName("Gatitos");
+        gatitos.setParent_id((long) 10);
+        categoryRepository.save(gatitos);
+
+        Category gatitosMemes = new Category();
+        gatitosMemes.setId((long) 11);
+        gatitosMemes.setName("Gatitos de memes");
+        gatitosMemes.setParent_id((long) 11);
+        categoryRepository.save(gatitosMemes);
+
+        Category crema = new Category();
+        crema.setId((long) 12);
+        crema.setName("Crema Entera");
+        crema.setParent_id((long) 2);
+        categoryRepository.save(crema);
     }
-         */
-
-
-    }
-
-
 }

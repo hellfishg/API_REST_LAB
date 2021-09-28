@@ -6,18 +6,19 @@ import javax.persistence.*;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
     private String name;
 
-    //@ManyToOne
-    //@JoinColumn(name = "category.id", nullable = true)
     @Column
     private Long parent_id;
 
     //Getter and Setters:
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

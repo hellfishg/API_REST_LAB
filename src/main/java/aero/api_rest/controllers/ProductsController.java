@@ -18,7 +18,7 @@ import static aero.api_rest.utils.Constants.TIME_SETTING_FOR_NEW_PRODUCTS;
 
 @RestController
 @RequestMapping("products")
-public class ProductController {
+public class ProductsController {
 
     @Autowired
     private ProductRepository productRepository;
@@ -30,9 +30,8 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> list() {
         List<ProductDTO> productDTOList = new ArrayList<>();
         float rateDollar = dollarPriceService.getDollarRateARS();
-        productRepository
-                .findAll()
-                .forEach(e -> productDTOList.add(new ProductDTO()
+        productRepository.findAll()
+                        .forEach(e -> productDTOList.add(new ProductDTO()
                         .createProductDTO(e, e.getPrice() / rateDollar))
                 );
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
